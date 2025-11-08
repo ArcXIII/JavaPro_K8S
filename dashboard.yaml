@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kubernetes-dashboard-ingress
+  namespace: kubernetes-dashboard # Or the namespace where your dashboard is deployed
+  annotations:
+    konghq.com/strip-path: "true" # Optional: if you want to access it at a root path like /dashboard
+spec:
+  ingressClassName: kong # Ensure this matches your Kong Ingress Controller's class name
+  rules:
+    - host: localhost # Replace with your desired hostname
+      http:
+        paths:
+          - path: /dashboard # Or a specific path like /dashboard
+            pathType: Prefix
+            backend:
+              service:
+                name: kubernetes-dashboard-kong-proxy # The name of the Dashboard service
+                port:
+                  number: 443 # Or the port the Dashboard service is exposed on

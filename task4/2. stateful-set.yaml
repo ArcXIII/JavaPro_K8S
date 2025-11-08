@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: stateful-set-test
+spec:
+  selector:
+    matchLabels:
+      app: stateful-set-test
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: stateful-set-test
+    spec:
+      containers:
+        - name: busybox
+          image: busybox
+          args:
+            - /bin/sh
+            - -c
+            - 'while true; do echo "Hello from pod $POD_NAME"; sleep 300; done'
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
