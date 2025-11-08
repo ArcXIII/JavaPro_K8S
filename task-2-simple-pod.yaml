@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod # тип ресурса кубера
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  containers:
+    - name: nginx # имя контейнера
+      image: nginx # образ
+      imagePullPolicy: IfNotPresent # политика по скачиванию образов
+      ports:
+        - name: nginx
+          containerPort: 80
+          protocol: TCP
+  restartPolicy: Always

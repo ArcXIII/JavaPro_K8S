@@ -1,0 +1,130 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"role":"nginx"},"name":"nginx","namespace":"default"},"spec":{"containers":[{"image":"nginx","imagePullPolicy":"IfNotPresent","name":"nginx","ports":[{"containerPort":80,"name":"nginx","protocol":"TCP"}]}],"restartPolicy":"Always"}}
+  creationTimestamp: "2025-11-08T14:33:58Z"
+  generation: 1
+  labels:
+    role: nginx
+  name: nginx
+  namespace: default
+  resourceVersion: "11940"
+  uid: 0a03b086-45ec-43c8-ae94-b6b7f9e2fb84
+spec:
+  containers:
+    - image: nginx
+      imagePullPolicy: IfNotPresent
+      name: nginx
+      ports:
+        - containerPort: 80
+          name: nginx
+          protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: kube-api-access-mzqf9
+          readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: desktop-worker
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+  volumes:
+    - name: kube-api-access-mzqf9
+      projected:
+        defaultMode: 420
+        sources:
+          - serviceAccountToken:
+              expirationSeconds: 3607
+              path: token
+          - configMap:
+              items:
+                - key: ca.crt
+                  path: ca.crt
+              name: kube-root-ca.crt
+          - downwardAPI:
+              items:
+                - fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+                  path: namespace
+status:
+  conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-11-08T14:34:05Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-11-08T14:33:58Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-11-08T14:35:49Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-11-08T14:35:49Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-11-08T14:33:58Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+  containerStatuses:
+    - containerID: containerd://c0a5d1a2fbf3fa92d2477b519ba6b7f1edcf5137a5b542dd1bfa1bb532675141
+      image: docker.io/library/nginx:latest
+      imageID: docker.io/library/nginx@sha256:1beed3ca46acebe9d3fb62e9067f03d05d5bfa97a00f30938a0a3580563272ad
+      lastState: {}
+      name: nginx
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2025-11-08T14:35:49Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+            - 0
+          uid: 0
+      volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: kube-api-access-mzqf9
+          readOnly: true
+          recursiveReadOnly: Disabled
+  hostIP: 172.19.0.2
+  hostIPs:
+    - ip: 172.19.0.2
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.244.1.12
+  podIPs:
+    - ip: 10.244.1.12
+  qosClass: BestEffort
+  startTime: "2025-11-08T14:33:58Z"
