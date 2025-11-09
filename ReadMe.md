@@ -105,3 +105,19 @@ kubectl create job --from=cronjob/cronjob-test-2 manual-job-from-cronjob-2
 Результат:
 
 ![4.3.png](task4/4.3.png)
+
+# Задание №5 по курсу JavaPRO Модуль 2
+
+## 5.1 - 5.2
+[5.1-2 configmap and secret.yaml](task5/5.1-2%20configmap%20and%20secret.yaml)
+
+## 5.3
+[5.3 pvc.yaml](task5/5.3%20pvc.yaml)
+
+![5.3 results.png](task5/5.3%20results.png)
+
+## 5.4
+
+[5.4 manifests.yaml](task5/5.4%20manifests.yaml)
+
+![5.4 results.png](task5/5.4%20results.png)
