@@ -121,3 +121,7 @@ kubectl create job --from=cronjob/cronjob-test-2 manual-job-from-cronjob-2
 [5.4 manifests.yaml](task5/5.4%20manifests.yaml)
 
 ![5.4 results.png](task5/5.4%20results.png)
+
+# Задание №6 по курсу JavaPRO Модуль 2
+
+Манифест: [6.1.yaml](task6/6.1.yaml)
