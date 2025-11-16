@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resource-50mi-req-pod
+  namespace: quota-lab
+spec:
+  containers:
+    - name: nginx
+      image: nginx:alpine3.22-slim
+      resources:
+        requests:
+          memory: 50Mi

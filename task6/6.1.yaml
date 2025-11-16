@@ -15,3 +15,20 @@ spec:
     pods: "2"
     requests.memory: "400Mi"
     limits.memory: "600Mi"
+
+---
+
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: test-pod-limitrange
+  namespace: quota-lab
+spec:
+  limits:
+    - type: Container
+      max:
+        memory: 300Mi
+      default:
+        memory: 200Mi
+      defaultRequest:
+        memory: 100Mi

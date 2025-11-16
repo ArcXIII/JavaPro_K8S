@@ -155,4 +155,53 @@ kubectl create job --from=cronjob/cronjob-test-2 manual-job-from-cronjob-2
 
 # Задание №6 по курсу JavaPRO Модуль 2
 
+## 6.1
 Манифест: [6.1.yaml](task6/6.1.yaml)
+
+Ограничение на 2 пода, при попытке создания третьего:
+![6.1 3rd pod creation result.png](task6/6.1%203rd%20pod%20creation%20result.png)
+
+## 6.2
+Манифест: [6.2. no-resource-def-pod.yaml](task6/6.2.%20no-resource-def-pod.yaml)
+
+Результат:
+![6.2.png](task6/6.2.png)
+
+## 6.3
+Манифест: [6.3. resource-50mi-req-pod.yaml](task6/6.3.%20resource-50mi-req-pod.yaml)
+
+Результат:
+![6.3.png](task6/6.3.png)
+
+## 6.4
+Манифест: [6.4. resource-500mi-lim-pod.yaml](task6/6.4.%20resource-500mi-lim-pod.yaml)
+
+Результат:
+![6.4.png](task6/6.4.png)
+
+## 6.5
+Манифест: [6.5. resource-req-gt-lim-pod.yaml](task6/6.5.%20resource-req-gt-lim-pod.yaml)
+
+Результат:
+![6.5.png](task6/6.5.png)
+
+## 6.6
+Ответы по теории:
+
+- Чем отличается ResourceQuota от LimitRange?
+: ResourceQuota ограничения для неймспейса, и применяться будет к сумме потребляемых подами ресурсов. 
+LimitRange - ограничения для каждого пода/контейнера в поде
+
+- Что произойдёт, если не указывать ресурсы контейнера?
+: Будут использованы дефолтные из LimitRange. Если дефолты не заданы - будет использовано указанное значение.
+Пример - указан только limits.max.memory = 300Mi. Под создастся с request.memory = limit.memory = 300Mi
+
+- Что произойдёт при попытке создать третий Pod в namespace?
+: Под не создастся, вернётся ошибка 
+`pods "resource-500mi-lim-pod" is forbidden: exceeded quota: quotas, requested: pods=1, used: pods=2, limited: pods=2`
+
+- Что будет, если requests.memory указать больше, чем limits.memory?
+: Будет ошибка `Invalid value: "300Mi": must be less than or equal to memory limit of 200Mi`
+
+- Можно ли ограничить только CPU, а память не трогать?
+: Можно
